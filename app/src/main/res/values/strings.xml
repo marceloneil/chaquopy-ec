@@ -2,7 +2,7 @@
 
     <string name="main_caption">For more information see the
         <a href="https://chaquo.com/chaquopy/">Chaquopy website</a>, or view this app\'s source
-        code <a href="https://github.com/chaquo/chaquopy">on GitHub</a>.
+        code <a href="https://github.com/mhsmith/chaquopy-ec">on GitHub</a>.
     </string>
 
     <string name="repl">Python console</string>
@@ -33,6 +33,6 @@
         Pygments library to format a copy of its own source code as HTML.</string>
 
     <string name="java_unit_test">Java unit tests</string>
-    <string name="python_unit_test">Python unit tests</string>
+    <string name="python_unit_test">Electron Cash unit tests</string>
 
 </resources>

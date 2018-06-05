@@ -1,19 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.chaquo.python'  // Must come after com.android.application
 
-afterEvaluate {
-    def assetsSrcDir = "src/main/assets/source"
-    delete assetsSrcDir
-    mkdir assetsSrcDir
-    for (filename in ["src/main/python/chaquopy/demo/ui_demo.py",
-                      "src/main/java/com/chaquo/python/demo/JavaDemoActivity.java"]) {
-        assert file(filename).exists()
-        copy {
-            from filename
-            into assetsSrcDir
-        }
-    }
-}
+def ELECTRON_CASH_ROOT = "../../electrum"
 
 android {
     compileSdkVersion 26
@@ -27,7 +15,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
 
-        versionName "3.1.0"
+        versionName "3.2.0"
         def verParsed = versionName.split(/\./).collect { Integer.parseInt(it) }
         versionCode ((verParsed[0] * 1000000) + (verParsed[1] * 1000) + (verParsed[2] * 10) + 1)
 
@@ -36,19 +24,12 @@ android {
             // following line to point to a Python 2.7 or 3.3+ executable.
             // buildPython "C:/Python27/python.exe"
 
-            // Android UI demo
             pip {
-                install "Pygments==2.2.0"   // Also used in Java API demo
+                install "-r", "$ELECTRON_CASH_ROOT/contrib/deterministic-build/requirements.txt"
             }
-            staticProxy "chaquopy.demo.ui_demo"
-
-            // Python unit tests
-            pip {
-                install "MarkupSafe==1.0"
-                install "certifi==2018.01.18"  // This is in the default extractPackages list.
-            }
-            staticProxy("chaquopy.test.static_proxy.basic", "chaquopy.test.static_proxy.header",
-                        "chaquopy.test.static_proxy.method")
+            extractPackages "lib", "electroncash"
+            extractPackages "plugins", "electroncash_plugins"
+            extractPackages "gui", "electroncash_gui"
         }
         ndk {
             abiFilters "x86", "armeabi-v7a"
@@ -67,14 +48,9 @@ android {
     productFlavors {
         // Using words rather than numbers so that "three" comes first alphabetically and is
         // therefore the default (https://issuetracker.google.com/issues/36988145).
-        two {
-            dimension "pyVersion"
-            applicationId "com.chaquo.python.demo"
-            python { version "2.7.15" }
-        }
         three {
             dimension "pyVersion"
-            applicationId "com.chaquo.python.demo3"
+            applicationId "com.chaquo.ec_test"
             python { version "3.6.5" }
         }
     }
@@ -89,6 +65,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            python {
+                srcDir ELECTRON_CASH_ROOT
+                include "lib/**", "gui/**", "plugins/**"  // Electron cash repository.
+                include "chaquopy/**"  // This repository.
+            }
         }
     }
 }

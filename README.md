@@ -1,21 +1,4 @@
-# Chaquopy demo
+# Chaquopy Electron Cash test app
 
-This is the demo app for [Chaquopy](https://chaquo.com/chaquopy/), the Python SDK for Android.
-You can install a [Python
-2](https://play.google.com/store/apps/details?id=com.chaquo.python.demo) or [Python
-3](https://play.google.com/store/apps/details?id=com.chaquo.python.demo3) build of this app
-from Google Play.
-
-The app includes:
-
-* A Python console for interactive experimentation.
-* An example of an Android activity written entirely in Python.
-* An example of how to use a Python library installed from PyPI in a normal Java activity.
-* The SDK's complete unit test suite.
-
-The project currently targets Android Studio 3.1, but should also be buildable with versions
-2.3 and 3.0.
-
-Please use the GitHub issue tracker to report issues with both the demo app and the SDK itself.
-
-For more details, see the [Chaquopy website](https://chaquo.com/chaquopy/).
+Before building, edit `ELECTRON_CASH_ROOT` in `app/build.gradle` to set the path to the
+Electron Cash repository.

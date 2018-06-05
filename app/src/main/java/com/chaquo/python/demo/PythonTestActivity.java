@@ -3,6 +3,7 @@ package com.chaquo.python.demo;
 import android.app.*;
 import com.chaquo.python.*;
 import com.chaquo.python.utils.*;
+import java.io.*;
 
 public class PythonTestActivity extends PythonConsoleActivity {
 
@@ -24,7 +25,8 @@ public class PythonTestActivity extends PythonConsoleActivity {
                                                 new Kwarg("stream", stream),
                                                 new Kwarg("verbosity", 2));
             PyObject loader = unittest.get("defaultTestLoader");
-            PyObject suite = loader.callAttr("loadTestsFromModule", py.getModule("chaquopy.test"));
+            File testsFile = new File(py.getModule("lib.tests").get("__file__").toString());
+            PyObject suite = loader.callAttr("discover", testsFile.getParent());
             runner.callAttr("run", suite);
         }
     }

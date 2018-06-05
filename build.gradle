@@ -7,9 +7,14 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:3.1.2"
 
-        // Newer versions may be available: please check here:
-        // https://chaquo.com/chaquopy/doc/current/changelog.html
-        classpath "com.chaquo.python:gradle:3.1.0"
+        // Chaquopy internal use
+        /*
+        version = file("../../python/VERSION.txt").text.trim()
+        classpath files("../../python/product/gradle-plugin/build/libs/gradle-${version}.jar")
+        classpath "org.json:json:20160810"
+        */
+
+        classpath "com.chaquo.python:gradle:3.2.0"
     }
 }
 

@@ -27,15 +27,6 @@
             android:label="@string/repl"
             android:launchMode="singleInstance">
         </activity>
-        <activity android:name="chaquopy.demo.ui_demo.UIDemoActivity"
-            android:label="@string/ui_demo">
-        </activity>
-        <activity android:name=".JavaDemoActivity"
-            android:label="@string/java_demo">
-        </activity>
-        <activity android:name=".JavaTestActivity"
-            android:label="@string/java_unit_test">
-        </activity>
         <activity android:name=".PythonTestActivity"
             android:label="@string/python_unit_test">
         </activity>
