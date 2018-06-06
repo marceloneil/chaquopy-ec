@@ -27,6 +27,8 @@ android {
             pip {
                 install "-r", "$ELECTRON_CASH_ROOT/contrib/deterministic-build/requirements.txt"
             }
+
+            // Each top-level package is imported under two names, so include both of them.
             extractPackages "lib", "electroncash"
             extractPackages "plugins", "electroncash_plugins"
             extractPackages "gui", "electroncash_gui"
@@ -35,29 +37,16 @@ android {
             abiFilters "x86", "armeabi-v7a"
         }
 
-        // Chaquopy generates extra internal-use constructors on static proxy classes.
-        lintOptions {
-            disable "ValidFragment"
-        }
-
         // Remove other languages imported from Android support libraries.
         resConfigs "en"
     }
 
     flavorDimensions "pyVersion"
     productFlavors {
-        // Using words rather than numbers so that "three" comes first alphabetically and is
-        // therefore the default (https://issuetracker.google.com/issues/36988145).
         three {
             dimension "pyVersion"
             applicationId "com.chaquo.ec_test"
             python { version "3.6.5" }
-        }
-    }
-
-    applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "demo-${variant.versionName}-${variant.name}.apk"
         }
     }
 
@@ -87,6 +76,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:preference-v14:26.1.0'
-    compile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'
 }
