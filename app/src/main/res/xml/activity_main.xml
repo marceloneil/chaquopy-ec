@@ -12,4 +12,9 @@
             android:targetClass="com.chaquo.python.demo.PythonTestActivity"/>
     </Preference>
 
+    <Preference android:title="@string/ec_daemon_repl">
+        <intent android:targetPackage="@string/app_id"
+            android:targetClass="com.chaquo.python.demo.ECDaemonReplActivity"/>
+    </Preference>
+
 </PreferenceScreen>

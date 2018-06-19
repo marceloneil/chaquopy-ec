@@ -34,5 +34,6 @@
 
     <string name="java_unit_test">Java unit tests</string>
     <string name="python_unit_test">Electron Cash unit tests</string>
+    <string name="ec_daemon_repl">Electron Cash Interactive read-eval-print loop</string>
 
 </resources>

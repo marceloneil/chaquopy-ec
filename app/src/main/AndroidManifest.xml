@@ -30,6 +30,10 @@
         <activity android:name=".PythonTestActivity"
             android:label="@string/python_unit_test">
         </activity>
+        <activity android:name=".ECDaemonReplActivity"
+            android:label="@string/repl"
+            android:launchMode="singleInstance">
+        </activity>
     </application>
 
 </manifest>
